@@ -35,4 +35,8 @@ Your task is to build a very simple CMS "Content Management System", the CMS wil
 #### Resources
 We recommend going through [Laracasts PHP practice course](https://laracasts.com/series/php-for-beginners) before proceeding.
 
+### License
+The project is licensed under the [GNU GPL V3](https://www.gnu.org/licenses/gpl-3.0.en.html)
 ##### GOOD LUCK!
+
+Powered by: [Sourcya](https://sourcya.com)
