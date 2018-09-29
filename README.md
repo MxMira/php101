@@ -9,10 +9,10 @@ So in this practice we want to see some nativePHP, you can use only:
 - PHP
 - HTML
 - CSS "Optional"
-,,,sh
+```sh
 No JS or JQUERY ..etc
 No PHP frameworks
-,,,
+```
 #### The Task:
 Your task is to build a very simple CMS "Content Management System", the CMS will have the following functionalities:
 - Login page
