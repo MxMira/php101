@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 11, 2018 at 08:18 PM
+-- Generation Time: Nov 13, 2018 at 08:52 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -32,21 +32,21 @@ CREATE TABLE IF NOT EXISTS `content` (
 `id` int(11) NOT NULL,
   `subject` varchar(100) NOT NULL,
   `body` varchar(300) DEFAULT 'null',
+  `tags` varchar(500) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `image` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `content`
 --
 
-INSERT INTO `content` (`id`, `subject`, `body`, `user_id`, `image`) VALUES
-(4, 'www', 'www', 2, 'clock2.jpg'),
-(5, 'ww', 'ww', 2, 'logo.jpg'),
-(6, 'wwwww', 'wwwww', 2, 'kitten.png'),
-(7, 'ww', 'ww', 2, 'clock.jpg'),
-(9, 'ww', 'ww', 2, 'kitten.png'),
-(10, 'bb', 'bb', 10, 'logo.jpg');
+INSERT INTO `content` (`id`, `subject`, `body`, `tags`, `user_id`, `image`) VALUES
+(1, 'post1', 'body1', 'go,zz,ss', 1, 'logo.jpg'),
+(2, 'post2', 'body2', 'aa', 1, 'kitten.png'),
+(3, 'post3', 'body3', 'qq', 1, 'logo.jpg'),
+(4, 'moPost1', 'body1', 'asd', 2, 'kitten.png'),
+(5, 'moPost2', 'body2', 'qqq', 2, 'clock.jpg');
 
 -- --------------------------------------------------------
 
@@ -83,23 +83,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(50) NOT NULL,
   `role` enum('admin','client') NOT NULL DEFAULT 'client',
   `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `password`, `role`, `created_time`) VALUES
-(1, 'qq', 'qq', 'client', '2018-11-09 10:49:32'),
-(2, 'ww', 'ww', 'client', '2018-11-09 10:49:32'),
-(3, 'aa', 'aa', 'client', '2018-11-09 10:49:32'),
-(4, 'ff', 'ff', 'client', '2018-11-10 08:12:34'),
-(5, 'gg', 'gg', 'client', '2018-11-10 08:13:58'),
-(6, 'zz', 'zz', 'client', '2018-11-10 08:14:51'),
-(7, 'vv', 'vv', 'client', '2018-11-10 08:18:08'),
-(8, 'hh', 'hh', 'client', '2018-11-10 08:18:23'),
-(9, 'll', 'll', 'client', '2018-11-10 08:18:43'),
-(10, 'bb', 'bb', 'client', '2018-11-11 21:13:45');
+(1, 'ahmed', 'ahmed', 'client', '2018-11-13 08:18:58'),
+(2, 'mo', 'mo', 'client', '2018-11-13 09:44:18');
 
 -- --------------------------------------------------------
 
@@ -117,12 +109,11 @@ CREATE TABLE IF NOT EXISTS `user_content` (
 --
 
 INSERT INTO `user_content` (`user_id`, `content_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
 (2, 4),
-(2, 5),
-(2, 6),
-(2, 7),
-(2, 9),
-(10, 10);
+(2, 5);
 
 --
 -- Indexes for dumped tables
@@ -166,7 +157,7 @@ ALTER TABLE `user_content`
 -- AUTO_INCREMENT for table `content`
 --
 ALTER TABLE `content`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `tag`
 --
@@ -176,7 +167,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
