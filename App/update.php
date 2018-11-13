@@ -7,15 +7,17 @@
 		$id=$_GET['id_update'];
 		$subject=$_GET['subject'];
 		$body=$_GET['body'];
+		$tags=$_GET['tags'];
 		$img=$_GET['img'];
 
-		$ExpireTime=time()+80000;
+		$ExpireTime=time()+(60*60);
 		setcookie("id",$id,$ExpireTime);
 
 	}else{
 		$id='';
 		$subject='';
 		$body='';
+		$tags='';
 		$img='';
 	}
 
@@ -32,7 +34,8 @@
 		<fieldset>
 			<legend>Update Post</legend>
 			*subject:<br><input style="margin:5px;" type="text" name="subject" value="<?php echo "$subject"?>"><br>
-			*body:<br><input style="margin:5px;" type="body" name="body" value="<?php echo "$body"?>"><br>
+			*body:<br><input style="margin:5px;" type="text" name="body" value="<?php echo "$body"?>"><br>
+			tags:<br><input style="margin:5px;" type="text" name="tags" value="<?php echo "$tags"?>"><br>
 			image:<br><?php echo "<img src='Upload/$img' style='width:50px; height:50px;'>"?><br>
 			<input style="margin:5px;" type="file" name="image"><br>
 			<input style="width:100%;margin:5px;" type="submit" name="update" value="Update Post"><br>
@@ -49,7 +52,7 @@
 
 		$subject=mysql_real_escape_string($_POST["subject"]);
 		$body=mysql_real_escape_string($_POST["body"]);
-		
+		$tags=mysql_real_escape_string($_POST["tags"]);
 		
 
 		if (empty($subject)||empty($body)) {
@@ -60,19 +63,20 @@
 				//print_r($_FILES["image"]);
 				$image=$_FILES["image"]["name"];
 				$Target="Upload/".basename($_FILES["image"]["name"]);
-				update($subject,$body,$image,$Target);
+				update($subject,$body,$tags,$image,$Target);
 
 			}else{
 
 				$Target= false;
 				$image= false;
-				update($subject,$body,$image,$Target);
+				var_dump($tags);
+				update($subject,$body,$tags,$image,$Target);
 			}
 			
 		}			
 	}	
 
-	function update($subject,$body,$image,$Target)
+	function update($subject,$body,$tags,$image,$Target)
 	{				
 		global $connectDB;
 
@@ -83,13 +87,13 @@
 		    //var_dump($image);
 		if ($image) {
 
-		    $Query="UPDATE content SET subject='$subject', body='$body', image='$image' 
+		    $Query="UPDATE content SET subject='$subject', body='$body', tags='$tags', image='$image' 
 			WHERE id = $id";
     		$Execute=mysql_query($Query);
 
 		}else{
 
-			$Query="UPDATE content SET subject='$subject', body='$body' 
+			$Query="UPDATE content SET subject='$subject', body='$body', tags='$tags' 
 			WHERE id = $id";
     		$Execute=mysql_query($Query);
 		} 

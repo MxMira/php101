@@ -24,7 +24,7 @@
 	</style>
 	<h3 class="column"><a href="content.php">Dashboard</a></h3>
 	<h3 class="column"><a href="addPost.php">ADD new Post</a></h3>
-	<h3 class="column"><a href="">View all Posts</a></h3>
+	<h3 class="column"><a href="allposts.php">View all Posts</a></h3>
 	<h3 class="column"><a href="index.php">Sign Out</a></h3>
 	
 		<?php 
@@ -123,6 +123,7 @@
 	    				$id=$array["id"];
 	    				$subject=$array["subject"];
 	    				$body=$array["body"];	    			 			
+	    				$tags=$array["tags"];	    			 			
 	    				$img=$array["image"];
 	    				echo "
 	    						<td>$id</td>
@@ -130,8 +131,8 @@
 	    						<td>$body</td>	    						
 	    					    <td>$tags</td>
 	    						<td><img src='Upload/$img' style='width:50px; height:50px;'></td>
-	    						<td><a href='update.php?id_update=$id&subject=$subject&body=$body&img=$img'>update</a></td>
-	    						<td><a href='delete.php?id_delete=$id&subject=$subject&body=$body&img=$img'>delete</a></td>	    				      
+	    						<td><a href='update.php?id_update=$id&subject=$subject&body=$body&tags=$tags&img=$img'>update</a></td>
+	    						<td><a href='delete.php?id_delete=$id&subject=$subject&body=$body&tags=$tags&img=$img'>delete</a></td>	    				      
 	    					</tr>
 	    					";
 	    		}

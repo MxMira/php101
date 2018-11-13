@@ -9,7 +9,8 @@
 		<fieldset>
 			<legend>Add Post</legend>
 			*subject:<br><input style="margin:5px;" type="text" name="subject" placeholder="subject"><br>
-			*body:<br><input style="margin:5px;" type="body" name="body" placeholder="body"><br>
+			*body:<br><input style="margin:5px;" type="text" name="body" placeholder="body"><br>
+			Tags (comma-separated):<br><input style="margin:5px;" type="text" name="tags" placeholder="tags"><br>
 			image:<input style="margin:5px;" type="file" name="image"><br>
 			<input style="width:100%;margin:5px;" type="submit" name="add" value="ADD Post"><br>
 			<input style="width:100%;margin:5px;" type="submit" name="back" value="Go to Dashboard">
@@ -27,17 +28,18 @@
 
 		$subject=mysql_real_escape_string($_POST["subject"]);
 		$body=mysql_real_escape_string($_POST["body"]);
+		$tags=mysql_real_escape_string($_POST["tags"]);
 		$image=$_FILES["image"]["name"];
 		$Target="Upload/".basename($_FILES["image"]["name"]);
 
 		if (empty($subject)||empty($body)) {
 			echo "<div Style='background-color:red;padding:5px;width:30%;color:white;margin-left:30%;text-align: center;'>Fill required fields</div>";
 		}else{
-			ADD($subject,$body,$image,$Target);
+			ADD($subject,$body,$tags,$image,$Target);
 		}			
 	}	
 
-	function ADD($subject,$body,$image,$Target)
+	function ADD($subject,$body,$tags,$image,$Target)
 	{				
 		global $connectDB;
 
@@ -46,8 +48,8 @@
 		    $userName=$_SESSION['user_name'];
 
 
-		$Query="INSERT INTO content(subject,body,user_id,image)
-			    VALUES('$subject','$body','$userID','$image')";
+		$Query="INSERT INTO content(subject,body,tags,user_id,image)
+			    VALUES('$subject','$body','$tags','$userID','$image')";
     	$Execute=mysql_query($Query);
     	move_uploaded_file($_FILES["image"]["tmp_name"],$Target);
 
