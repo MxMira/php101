@@ -123,18 +123,29 @@
 	    				$id=$array["id"];
 	    				$subject=$array["subject"];
 	    				$body=$array["body"];	    			 			
-	    				$tags=$array["tags"];	    			 			
+	    				$tags=$array["tags"];	
+	    				$tagArray=explode(",",$tags);    			 			
 	    				$img=$array["image"];
 	    				echo "
 	    						<td>$id</td>
 	    						<td>$subject</td>
-	    						<td>$body</td>	    						
-	    					    <td>$tags</td>
+	    						<td>$body</td>
+	    					 ";	?>		
+
+	    					    <td><?php 
+	    					    	foreach ($tagArray as $value) {
+	    					    		echo "<a href='youtube\\testyoutube.php?tag=$value'>$value</a>","  ";
+	    					    	}
+	    					    ?></td>
+
+	    						<?php 
+	    						echo"
 	    						<td><img src='Upload/$img' style='width:50px; height:50px;'></td>
 	    						<td><a href='update.php?id_update=$id&subject=$subject&body=$body&tags=$tags&img=$img'>update</a></td>
 	    						<td><a href='delete.php?id_delete=$id&subject=$subject&body=$body&tags=$tags&img=$img'>delete</a></td>	    				      
 	    					</tr>
 	    					";
+	    					
 	    		}
 
 	    		echo "</table>";
@@ -144,7 +155,7 @@
 				echo "<div Style='background-color:red;padding:5px;width:30%;color:white;margin-left:30%;text-align: center;'>you have no Content YET</div>";
 	    	}
 
-	?>	
+?>	
 </body>
 </html>
 
